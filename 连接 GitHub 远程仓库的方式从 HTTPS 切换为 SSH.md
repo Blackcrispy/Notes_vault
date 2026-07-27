@@ -35,9 +35,9 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
 - 系统会问你要把密钥文件保存在哪里，直接按 **回车键** 接受默认位置 `C:\Users\你的用户名\.ssh\id_ed25519` 就可以了，这样最简单。
-	
+
 - 接下来会提示你输入一个密码（passphrase）。为了同步时更方便（尤其是在 Obsidian 插件里），**建议直接按两次回车键跳过**，不设置密码。
-	
+
 - 完成后，系统会显示一个类似`Your identification has been saved...`的提示，说明密钥生成成功了。
 	- 生成的文件：
 	  - `~/.ssh/id_ed25519` —— **私钥**（妥善保管，绝不外传）
@@ -56,6 +56,7 @@ CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
 ```
 
 - 登录 GitHub → 右上角头像 → **Settings** → **SSH and GPG keys** → **New SSH key**
+
 - 填写标题标明设备（如“我的 Windows 电脑”），粘贴公钥，保存。
 
 ##### 3. 测试 SSH 连接
@@ -69,21 +70,23 @@ CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
 
 ##### 4. 修改本地仓库的远程地址
 
-- **方法一（推荐）**：在 Obsidian Git 插件设置中，将 Remote URL 从：
-  ```
-  https://github.com/用户名/仓库名.git
-  ```
-  改为：
-  ```
-  git@github.com:用户名/仓库名.git
-  ```
-- **方法二**：命令行操作：
-  ```bash
-  git remote set-url origin git@github.com:用户名/仓库名.git
-  ```
+- 此处选择直接在命令行中修改，打开你电脑上的 **命令提示符（CMD）** 或 **PowerShell**。
 
-##### 步骤 5：验证同步功能
+- 先切换到你的 Obsidian 笔记仓库目录。比如你的仓库在 `D:\Notes_vault`，就输入：
+```bash
+cd D:\Notes_vault
+```
 
-- 在 Obsidian 中点击 Git 插件的同步按钮，确认 push/pull 正常。
+- 输入以下命令查看当前远程仓库地址，确认是 HTTPS：
+```bash
+git remote -v
+```
+- 你会看到类似 `origin https://github.com/...` 的输出。输入以下命令修改远程地址为 SSH 格式：
+```bash
+git remote set-url origin git@github.com:用户名/仓库名.git
+```
 
+- 再次输入 `git remote -v` 确认地址已经更新成功。
+
+- 进行测试
 ---
