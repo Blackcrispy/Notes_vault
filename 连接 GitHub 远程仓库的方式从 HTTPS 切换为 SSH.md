@@ -23,36 +23,51 @@
 ***
 ### 三、操作步骤
 
-##### 步骤 1：在本地生成 SSH 密钥对
+##### 1. 在本地生成 SSH 密钥对
 
-- 打开 PowerShell（或终端），执行：
+- 在 PowerShell 窗口中，复制并粘贴以下命令，然后把 `"your_email@example.com"` 换成你在 GitHub 上注册的邮箱地址，按回车执行。
   ```bash
   ssh-keygen -t ed25519 -C "your_email@example.com"
   ```
-- 一路回车，接受默认路径和空密码。
-- 生成的文件：
-  - `~/.ssh/id_ed25519` —— **私钥**（妥善保管，绝不外传）
-  - `~/.ssh/id_ed25519.pub` —— **公钥**（可以公开）
+- 如果遇到系统不支持的提示，可以改用这个命令：
+```Bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
 
-##### 步骤 2：将公钥添加到 GitHub
+- 系统会问你要把密钥文件保存在哪里，直接按 **回车键** 接受默认位置 `C:\Users\你的用户名\.ssh\id_ed25519` 就可以了，这样最简单。
+	
+- 接下来会提示你输入一个密码（passphrase）。为了同步时更方便（尤其是在 Obsidian 插件里），**建议直接按两次回车键跳过**，不设置密码。
+	
+- 完成后，系统会显示一个类似`Your identification has been saved...`的提示，说明密钥生成成功了。
+	- 生成的文件：
+	  - `~/.ssh/id_ed25519` —— **私钥**（妥善保管，绝不外传）
+	  - `~/.ssh/id_ed25519.pub` —— **公钥**（可以公开）
+
+##### 2. 将公钥添加到 GitHub
 
 - 复制公钥内容：
+	- 若使用PowerShell
   ```bash
-  clip < ~/.ssh/id_ed25519.pub
+  Get-Content ~/.ssh/id_ed25519.pub | CLIP
   ```
-- 登录 GitHub → 右上角头像 → **Settings** → **SSH and GPG keys** → **New SSH key**
-- 填写标题（如“我的 Windows 电脑”），粘贴公钥，保存。
+	- 或是cmd终端
+```	bash
+CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
+```
 
-##### 步骤 3：测试 SSH 连接
+- 登录 GitHub → 右上角头像 → **Settings** → **SSH and GPG keys** → **New SSH key**
+- 填写标题标明设备（如“我的 Windows 电脑”），粘贴公钥，保存。
+
+##### 3. 测试 SSH 连接
 
 - 在终端中执行：
   ```bash
   ssh -T git@github.com
   ```
-- 首次连接会提示确认主机指纹，输入 `yes`。
+- 首次连接会提示确认主机指纹`Are you sure you want to continue connecting (yes/no/[fingerprint])?`，输入 `yes`。
 - 看到 `Hi 用户名! You've successfully authenticated...` 即表示成功。
 
-##### 步骤 4：修改 Obsidian 仓库的远程地址
+##### 4. 修改本地仓库的远程地址
 
 - **方法一（推荐）**：在 Obsidian Git 插件设置中，将 Remote URL 从：
   ```
