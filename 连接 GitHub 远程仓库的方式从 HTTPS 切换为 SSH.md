@@ -1,3 +1,9 @@
+---
+tags:
+  - Git
+  - Obsidian
+创建时间: 2026-07-27
+---
 ***
 ### 一、需要进行切换的原因  
 
@@ -26,12 +32,12 @@
 ##### 1. 在本地生成 SSH 密钥对
 
 - 在 PowerShell 窗口中，复制并粘贴以下命令，然后把 `"your_email@example.com"` 换成你在 GitHub 上注册的邮箱地址，按回车执行。
-  ```bash
+```bash
   ssh-keygen -t ed25519 -C "your_email@example.com"
-  ```
+```
 - 如果遇到系统不支持的提示，可以改用这个命令：
-```Bash
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```bash
+  ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
 - 系统会问你要把密钥文件保存在哪里，直接按 **回车键** 接受默认位置 `C:\Users\你的用户名\.ssh\id_ed25519` 就可以了，这样最简单。
@@ -45,13 +51,14 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
 ##### 2. 将公钥添加到 GitHub
 
-- 复制公钥内容：
-	- 若使用PowerShell
-  ```bash
-  Get-Content ~/.ssh/id_ed25519.pub | CLIP
-  ```
-	- 或是cmd终端
+- 使用以下命令复制公钥内容：
 ```	bash
+若使用PowerShell
+
+Get-Content ~/.ssh/id_ed25519.pub | CLIP
+
+若使用cmd终端
+
 CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
 ```
 
@@ -62,9 +69,9 @@ CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
 ##### 3. 测试 SSH 连接
 
 - 在终端中执行：
-  ```bash
+```bash
   ssh -T git@github.com
-  ```
+```
 - 首次连接会提示确认主机指纹`Are you sure you want to continue connecting (yes/no/[fingerprint])?`，输入 `yes`。
 - 看到 `Hi 用户名! You've successfully authenticated...` 即表示成功。
 
@@ -74,16 +81,16 @@ CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
 
 - 先切换到你的 Obsidian 笔记仓库目录。比如你的仓库在 `D:\Notes_vault`，就输入：
 ```bash
-cd D:\Notes_vault
+  cd D:\Notes_vault
 ```
 
 - 输入以下命令查看当前远程仓库地址，确认是 HTTPS：
 ```bash
-git remote -v
+  git remote -v
 ```
 - 你会看到类似 `origin https://github.com/...` 的输出。输入以下命令修改远程地址为 SSH 格式：
 ```bash
-git remote set-url origin git@github.com:用户名/仓库名.git
+  git remote set-url origin git@github.com:用户名/仓库名.git
 ```
 
 - 再次输入 `git remote -v` 确认地址已经更新成功。
