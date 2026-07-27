@@ -53,13 +53,13 @@ tags:
 
 - 使用以下命令复制公钥内容：
 ```	bash
-若使用PowerShell
+  若使用PowerShell
 
-Get-Content ~/.ssh/id_ed25519.pub | CLIP
+  Get-Content ~/.ssh/id_ed25519.pub | CLIP
 
-若使用cmd终端
+  若使用cmd终端
 
-CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
+  CLIP < %USERPROFILE%\.ssh\id_ed25519.pub
 ```
 
 - 登录 GitHub → 右上角头像 → **Settings** → **SSH and GPG keys** → **New SSH key**
