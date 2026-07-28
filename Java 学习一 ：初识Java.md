@@ -17,7 +17,7 @@ Java的三大分支之间存在一定的关系，可以简单概括为：
 
 - Java SE 是Java的核心部分，Java EE和Java ME都是在Java SE的基础上进行扩展和定制。
 - Java EE 是在Java SE的基础上增加了更多的企业级技术，如Servlet、JSP、EJB、JMS、JTA等，用于开发大型企业级应用程序。
-- Java ME 是在Java SE的基础上进行裁剪和优化，使其适合嵌入式设备和移动设备上的应用程序开发。
+- Java ME是在Java SE的基础上进行裁剪和优化，使其适合嵌入式设备和移动设备上的应用程序开发。
 
 总之，Java SE是Java的基础，Java EE和Java ME都是在Java SE的基础上进行扩展和定制，用于不同领域的应用程序开发。
 ***
