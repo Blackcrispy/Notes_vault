@@ -33,7 +33,7 @@ Java既不是纯解释型语言，也不是纯编译型语言，而是一种混�
 
 总体包含两个阶段，编译阶段和运行阶段。这两个阶段可以在不同的操作系统上完成。
 
-- 程序员编写完的 .java 文件是源代码文件，使用 `javac` 命令进行编译，`javac` 命令后跟随 .java 源代码文件的名称。
+- 程序员编写完的 .java 文件是**源代码文件**，使用 `javac` 命令进行编译，`javac` 命令后跟随 .java 源代码文件的名称。
 ```bash
 javac hello.java
 ```
@@ -49,3 +49,6 @@ java hello
 - JDK（Java Development Kit）是Java开发工具包，包含了Java开发所需的所有工具和类库。
 - JRE（Java Runtime Environment）是Java运行时环境，包含了Java虚拟机和运行Java程序所需的类库等文件。
 - JVM（Java Virtual Machine）是Java虚拟机，是Java程序的运行环境，能够在各种平台上运行Java程序，它将Java字节码解释成本地机器码执行。
+
+包含关系：JDK 包含 JRE 包含 JVM
+***
