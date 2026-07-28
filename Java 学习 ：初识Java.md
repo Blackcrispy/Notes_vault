@@ -15,9 +15,9 @@ tags:
 
 Java的三大分支之间存在一定的关系，可以简单概括为：
 
-- Java SE是Java的核心部分，Java EE和Java ME都是在Java SE的基础上进行扩展和定制。
-- Java EE是在Java SE的基础上增加了更多的企业级技术，如Servlet、JSP、EJB、JMS、JTA等，用于开发大型企业级应用程序。
-- Java ME是在Java SE的基础上进行裁剪和优化，使其适合嵌入式设备和移动设备上的应用程序开发。
+- Java SE 是Java的核心部分，Java EE和Java ME都是在Java SE的基础上进行扩展和定制。
+- Java EE 是在Java SE的基础上增加了更多的企业级技术，如Servlet、JSP、EJB、JMS、JTA等，用于开发大型企业级应用程序。
+- Java ME 是在Java SE的基础上进行裁剪和优化，使其适合嵌入式设备和移动设备上的应用程序开发。
 
 总之，Java SE是Java的基础，Java EE和Java ME都是在Java SE的基础上进行扩展和定制，用于不同领域的应用程序开发。
 ***
@@ -43,6 +43,8 @@ javac hello.java
 ```bash
 java hello
 ```
+
+注意：`javac` 命令后跟随源文件路径，而 `java` 命令后只跟随类名， JVM 中的**类加载器**通过CLASSPATH 环境变量来找到字节码文件，未配置时默认在当前目录下寻找。CLASSPATH 环境变量也称为**类路径**。
 ***
 ### 五、JDK、JRE、JVM 的关系
 
@@ -50,5 +52,5 @@ java hello
 - JRE（Java Runtime Environment）是Java运行时环境，包含了Java虚拟机和运行Java程序所需的类库等文件。
 - JVM（Java Virtual Machine）是Java虚拟机，是Java程序的运行环境，能够在各种平台上运行Java程序，它将Java字节码解释成本地机器码执行。
 
-包含关系：JDK 包含 JRE 包含 JVM
+包含关系：**JDK** 包含 **JRE** 包含 **JVM** 基于 **操作系统** 基于 **硬件** 
 ***
