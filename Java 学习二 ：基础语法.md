@@ -379,10 +379,27 @@ do {
 - Java中的**方法(method)**：可以完成某个特定的功能，并且还可以被重复使用的代码片段。方法是一种封装代码逻辑的重要方式。在C语言中叫做**函数**。
 
 ```java
+
 [修饰符列表] 返回值类型 方法名(形式参数列表){
     方法体;
 }
+
+public class Test{
+	public static void main(String[] args){
+		int x = 10;
+
+		// 调用方法传递x的时候，实际上是把x变量中保存的10复制一份，传递过去了。
+		add(x);
+		System.out.println("main's x = " + x); // 10
+	}
+
+	public static void add(int x){
+		x++;
+		System.out.println("add's x = " + x); // 11
+	}
+}
 ```
+- **注意**：调用方法时，创建新的栈帧入栈，传递参数时，先将变量复制一份再传递过去。
 
 - **修饰符列表**：可选项。此处使用 `public static`，后面笔记中再做介绍。
 - **返回值类型**：用来指定方法返回值的数据类型（方法执行结束后的结果类型）。只要是 Java 合法的数据类型，都可以。如果方法执行结束时没有返回任何数据，返回值类型也不能空着，需要写 `void` 关键字
@@ -391,3 +408,41 @@ do {
 - 如果修饰符列表中含有 `static` 关键字，采用 `类名.方法名(实际参数列表)` 调用方法。调用者和被调用者**在同一个类中**，则 `类名.` 可以省略，仅使用 `方法名(实际参数列表)` 即可。
 - 如果修饰符列表没有 `static` 关键字，需要先实例化一个对象，然后使用 `对象名.方法名(实际参数列表)` 来进行调用。
 
+#### 2. 方法重载
+
+- **方法重载 (overload)**：在同一个类中的几个方法，功能相似，方法名一致，但**参数列表不同**，这种编写方式叫做方法重载。
+```java
+public class Test{
+	public static void main(String[] args){
+	}
+
+	public static int sum(int a, int b){
+		return a + b;
+	}
+	
+	public static long sum(long a, long b){
+		return a + b;
+	}
+}
+```
+
+**什么是参数列表不同?**
+```java
+//参数个数不同
+public static void m1(int a, int b){}
+public static void m1(int a){}
+
+//参数类型不同
+public static void m2(String a){}
+public static void m2(int a){}
+
+//参数顺序不同
+public static void m3(int a, double b){}
+public static void m3(double a, int b){}
+```
+- **注意**：只有**修饰符列表**和**返回值类型**不能使用方法重载。
+***
+
+## 七、import 语句
+
+#### 1. 包 (package)
