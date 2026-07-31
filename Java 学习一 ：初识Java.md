@@ -33,18 +33,58 @@ Java既不是纯解释型语言，也不是纯编译型语言，而是一种混�
 
 总体包含两个阶段，编译阶段和运行阶段。这两个阶段可以在不同的操作系统上完成。
 
-- 程序员编写完的 .java 文件是**源代码文件**，使用 `javac` 命令进行编译，`javac` 命令后跟随 .java 源代码文件的路径，可以是绝对路径，或相对路径。
+1. 程序员编写完的 .java 文件是**源代码文件**，使用 `javac` 命令进行编译，`javac` 命令后跟随 .java 源代码文件的路径，可以是绝对路径，或相对路径。
 ```bash
 javac hello.java
 ```
 - 通过 `javac` 命令生成一个或多个 .class 文件，源代码文件中的一个类对应一个 .class 文件，该文件称为**字节码文件**，它不是**机器码文件**，操作系统无法执行，只有 JVM 才能看懂。
 
-- 通过 `java` 命令调动 JVM 将 .class 字节码文件解释为机器码文件，操作系统才能去执行。`java` 命令后跟随类名。
+- 例如对下面 hello.java 源代码文件使用 `javac` 命令生成 hello.class 字节码文件
+```java
+public class hello{
+    public static void main(String[] args){
+        int i = 10;
+        int j = i;
+    }
+}
+```
+- 字节码文件可以通过以下命令进行查看：
+```bash
+javap -c hello.class
+```
+- 上面程序的字节码文件如下：
+```java
+public class ReadClass {
+  public ReadClass();
+    Code:
+       0: aload_0
+       1: invokespecial #1      // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: bipush        10
+       2: istore_1
+       3: iload_1
+       4: istore_2
+       5: return
+}
+```
+- 本质是只有 **JVM** 可以看懂并且运行的**特殊汇编指令**。
+
+2.  通过 `java` 命令调动 **JVM** 将 .class 字节码文件解释为机器码文件，操作系统才能去执行。`java` 命令后跟随类名。
 ```bash
 java hello
 ```
 
-注意：`javac` 命令后跟随源文件路径，而 `java` 命令后只跟随类名， JVM 中的**类加载器**通过CLASSPATH 环境变量来找到字节码文件，未配置时默认在当前目录下寻找。CLASSPATH 环境变量也称为**类路径**。
+注意：`javac` 命令后跟随**源文件路径**，而 `java` 命令后只跟随**类名**， JVM 中的**类加载器**通过CLASSPATH 环境变量来找到字节码文件，未配置时默认在当前目录下寻找。CLASSPATH 环境变量也称为**类路径**。
+
+```mermaid
+graph TD
+    A[hello.java 源代码文件] --> |javac 命令|B[hello.class 字节码文件]
+    B -->|java 命令|C[程序运行]
+```
+
 ***
 ### 五、JDK、JRE、JVM 的关系
 
