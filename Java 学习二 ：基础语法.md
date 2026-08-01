@@ -477,3 +477,13 @@ java com.baidu.hmdp.user.ServiceFirst
 ```
 
 #### 2. import 语句
+
+- `import` 语句用来引入其他类。
+
+-  A类中使用B类，A类和B类不在同一个包下时，就需要在A类中使用 `import` 语句引入B类。
+
+-  `java.lang` 包下的不需要手动引入。
+
+- `import` 语句只能出现在 `package` 语句之下，`class` 定义之前，`import` 语句可以编写多个。
+
+- `import` 语句可以模糊导入：`java.util.* ;`
