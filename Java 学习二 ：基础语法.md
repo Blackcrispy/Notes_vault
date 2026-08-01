@@ -454,12 +454,12 @@ import ...
 	- 包名是标识符，规范中要求是全部小写。
 	- 公司域名倒序 + 项目名 + 模块名 + 功能名
 ```java
-package com.baidu.hmdp.user.service
+package com.baidu.hmdp.user.Service01
 ```
 
 - 在包机制中的一个类有**两种类名**：
-	- **全类名**：edu.hnu.javase.chapter.PackageTest
-	- **简类名**：PackageTest
+	- **全类名**：com.baidu.hmdp.user.ServiceFirst
+	- **简类名**：ServiceFirst
 
 - 类在包机制中**如何编译**？
 	- 命令语法格式：`javac -d 生成路径 java源文件路径`
@@ -472,7 +472,7 @@ javac -d . *.java  #将当前目录下的所有.java文件进行编译，并在�
 	- 命令语法格式： `java 全类名`
 	- `java`命令启动`JVM`，`JVM`启动`classloader`，未配置时默认从当前路径找，先找到`edu`，再找`hnu`，一层一层找下去。
 ```bash
-java edu.hnu.javase.chapter.PackageTest
+java com.baidu.hmdp.user.ServiceFirst
 ```
 
 #### 2. import 语句
