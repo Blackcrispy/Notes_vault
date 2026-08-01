@@ -442,3 +442,23 @@ public static void m3(double a, int b){}
 #### 1. 包 (package)
 
 - **包机制的作用**：将不同功能的类放到不同的包中，便于代码的管理和维护。包机制的实质就是在操作系统上创建不同的目录用于存放代码文件。
+
+- **定义包名的语法**：必须写在java源代码的第一行，只能有一行，如下所示。
+```java
+package java.lang
+
+import ...
+```
+
+- **包名的命名规范**：
+	- 包名是标识符，规范中要求是全部小写。
+	- 公司域名倒序 + 项目名 + 模块名 + 功能名
+```java
+package com.baidu.hmdp.user.service
+```
+
+- 在包机制中的一个类有**两种类名**：
+	- **全类名**：edu.hnu.javase.chapter.PackageTest
+	- **简类名**：PackageTest
+
+- 类在包机制中如何**编译**和**运行**？
