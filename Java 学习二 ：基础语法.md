@@ -234,7 +234,7 @@ int a, b, c = 300; // a和b没有赋值，只有c赋值300
 ```
 
 - **变量作用域**就是变量的有效范围。变量的作用域是怎样的呢？
-- 用一句大白话就可以概括了：**出了大括号就不认识了**。
+- 用一句大白话就可以概括：**出了大括号就不认识了**。
 ```java
 public class MyClass {
     static int e = 100;
@@ -460,6 +460,7 @@ package com.baidu.hmdp.user.Service01
 - 在包机制中的一个类有**两种类名**：
 	- **全类名**：com.baidu.hmdp.user.ServiceFirst
 	- **简类名**：ServiceFirst
+- **全类名 = 包名.简类名**
 
 - 类在包机制中**如何编译**？
 	- 命令语法格式：`javac -d 生成路径 java源文件路径`
