@@ -461,4 +461,18 @@ package com.baidu.hmdp.user.service
 	- **全类名**：edu.hnu.javase.chapter.PackageTest
 	- **简类名**：PackageTest
 
-- 类在包机制中如何**编译**和**运行**？
+- 类在包机制中**如何编译**？
+	- 命令语法格式：`javac -d 生成路径 java源文件路径`
+	- **编译时直接生成包对应的层层目录**，使用如下命令进行编译：
+```bash
+javac -d . *.java  #将当前目录下的所有.java文件进行编译，并在当前目录下生成对应的包结构
+```
+
+- 类在包机制中**如何运行**？
+	- 命令语法格式： `java 全类名`
+	- `java`命令启动`JVM`，`JVM`启动`classloader`，未配置时默认从当前路径找，先找到`edu`，再找`hnu`，一层一层找下去。
+```bash
+java edu.hnu.javase.chapter.PackageTest
+```
+
+#### 2. import 语句
