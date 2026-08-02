@@ -23,13 +23,16 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 	at hnu.xingjj.test.TestApplication.main(TestApplication.java:10)
 ```
 
-- 可以手动模拟抛出异常的过程
+- 使用`throw`关键字可以手动模拟抛出异常的过程
 ```java
 public class TestApplication {  
     public static void main(String[] args) {  
         NullPointerException e = new NullPointerException();  
         throw e;  
-        // throw new NullPointerException("这是一个模拟的空指针异常")  
+        // throw new NullPointerException()  // 合并，先创建再抛出
     }  
 }
 ```
+
+#### 2. 异常的继承结构
+
