@@ -60,13 +60,13 @@ classDiagram
         - **StackOverflowError**：栈溢出，如递归无结束条件
         - OtherError：其他错误
     - **IOError**：I/O错误
-    - OtherError：其他错误
+    - OtherError：等等其他错误
         
 - **Exception**：程序员可以处理，方式有两种—— `throws`推卸责任 或 `try-catch`自己解决
     
-    - **RuntimeException**（**运行时异常**、非受控异常、未检查异常）：编译期可选择处理或不处理，编译器不报  
+    - **RuntimeException**（**运行时异常**、非受控异常、未检查异常）：编写程序时可选择处理或不处理，编译器不报错，**只有当运行时真正发生时才会报错**。  
         - **ClassCastException**：类型转换异常          
         - **NullPointerException**：空指针异常         
-        - OtherError：其他错误    
-    - **CheckedException**（**编译时异常**、受控异常、检查异常）：Exception的直接子类中除了RuntimeException之外的类，编译期必须预处理，否则编译器报错（异常仍发生在运行期）
+        - OtherError：等等其他错误    
+    - **CheckedException**（**编译时异常**、受控异常、检查异常）：**除了运行时异常之外**的异常类，编写程序时必须预处理，否则编译器报错，**无论运行时是否发生，编译器都会报错。**
 
