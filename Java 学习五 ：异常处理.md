@@ -37,16 +37,42 @@ public class TestApplication {
 #### 2. 异常的继承结构
 
 ```mermaid
-flowchart TD
-    Throwable --> Error
-    Throwable --> Exception
+classDiagram
+    Throwable <|-- Error
+    Throwable <|-- Exception
     
-    Error --> VirtualMachineError
-    Error --> IOError
-    Error --> OtherError
+    Error <|-- VirtualMachineError
+    Error <|-- IOError
+    Error <|-- OtherError
     
-    Exception --> RuntimeException
-    Exception --> CheckedException
+    Exception <|-- RuntimeException
+    Exception <|-- CheckedException
+    
+    class Throwable {
+        <<abstract>>
+        +异常堆栈公共方法
+    }
+    
+    class Error {
+        <<不可处理>>
+        出现即退出JVM
+    }
+    
+    class Exception {
+        <<可处理>>
+        try-catch 或 throws
+    }
+    
+    class RuntimeException {
+        <<非受控异常>>
+        编译期可不处理
+    }
+    
+    class CheckedException {
+        <<受控异常>>
+        编译期必须预处理
+    }
+    
 ```
 
 
