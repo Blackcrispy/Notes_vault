@@ -51,4 +51,22 @@ classDiagram
     Exception <|-- CheckedException
 ```
 
+- **Throwable**：异常堆栈结构的老祖宗，所有 **异常(Exception)** 和 **错误(Error)** 都是可抛出的。
+
+- **Error**：出现就立即退出JVM，程序员无权干涉也解决不了。
+	
+    - **VirtualMachineError**：虚拟机错误。
+        - **OutOfMemoryError**：OOM，堆内存溢出 / 方法区内存溢出
+        - **StackOverflowError**：栈溢出，如递归无结束条件
+        - OtherError：其他错误
+    - **IOError**：I/O错误
+    - OtherError：其他错误
+        
+- **Exception**：程序员可以处理，方式有两种—— `throws`推卸责任 或 `try-catch`自己解决
+    
+    - **RuntimeException**（**运行时异常**、非受控异常、未检查异常）：编译期可选择处理或不处理，编译器不报  
+        - **ClassCastException**：类型转换异常          
+        - **NullPointerException**：空指针异常         
+        - OtherError：其他错误    
+    - **CheckedException**（**编译时异常**、受控异常、检查异常）：Exception的直接子类中除了RuntimeException之外的类，编译期必须预处理，否则编译器报错（异常仍发生在运行期）
 
