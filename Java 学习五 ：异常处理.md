@@ -36,3 +36,17 @@ public class TestApplication {
 
 #### 2. 异常的继承结构
 
+```mermaid
+flowchart TD
+    Throwable --> Error
+    Throwable --> Exception
+    
+    Error --> VirtualMachineError
+    Error --> IOError
+    Error --> OtherError
+    
+    Exception --> RuntimeException
+    Exception --> CheckedException
+```
+
+
