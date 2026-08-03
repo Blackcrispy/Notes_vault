@@ -55,10 +55,10 @@ classDiagram
 
 - **Error**：出现就立即退出JVM，程序员无权干涉也解决不了。
 	
-    - **VirtualMachineError**：虚拟机错误。
+    - **VirtualMachineError**：虚拟机错误
         - **OutOfMemoryError**：OOM，堆内存溢出 / 方法区内存溢出
         - **StackOverflowError**：栈溢出，如递归无结束条件
-        - OtherError：其他错误
+        - OtherError：等等其他虚拟机错误
     - **IOError**：I/O错误
     - OtherError：等等其他错误
         
@@ -67,6 +67,6 @@ classDiagram
     - **RuntimeException**（**运行时异常**、非受控异常、未检查异常）：编写程序时可选择处理或不处理，编译器不报错，**只有当运行时真正发生时才会报错**。  
         - **ClassCastException**：类型转换异常          
         - **NullPointerException**：空指针异常         
-        - OtherError：等等其他错误    
+        - OtherException：等等其他运行时异常    
     - **CheckedException**（**编译时异常**、受控异常、检查异常）：**除了运行时异常之外**的异常类，编写程序时必须预处理，否则编译器报错，**无论运行时是否发生，编译器都会报错。**
 
