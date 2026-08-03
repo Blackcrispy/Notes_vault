@@ -38,6 +38,8 @@ public class TestApplication {
 
 ```mermaid
 classDiagram
+    Object <|-- Throwable
+    
     Throwable <|-- Error
     Throwable <|-- Exception
     
@@ -47,32 +49,6 @@ classDiagram
     
     Exception <|-- RuntimeException
     Exception <|-- CheckedException
-    
-    class Throwable {
-        <<abstract>>
-        +异常堆栈公共方法
-    }
-    
-    class Error {
-        <<不可处理>>
-        出现即退出JVM
-    }
-    
-    class Exception {
-        <<可处理>>
-        try-catch 或 throws
-    }
-    
-    class RuntimeException {
-        <<非受控异常>>
-        编译期可不处理
-    }
-    
-    class CheckedException {
-        <<受控异常>>
-        编译期必须预处理
-    }
-    
 ```
 
 
