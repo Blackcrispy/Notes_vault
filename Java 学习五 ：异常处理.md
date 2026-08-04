@@ -69,5 +69,6 @@ classDiagram
         - NullPointerException：空指针异常         
         - OtherException：等等其他运行时异常    
         
-    - **CheckedException**（**编译时异常**、受控异常、检查异常）：**除了运行时异常之外**的异常类，编写程序时必须预处理，否则编译器报错，==**无论运行时是否发生，编译器在编译时都会报错。**==
+    - **CheckedException**（**编译时异常**、受控异常、检查异常）：**除了运行时异常之外**的异常类，编写程序时必须预处理，否则编译器报错，==**无论运行时是否发生，编译器在编译时都会报错**。
+	- 运行时异常的父类是**RuntimeException**，而编译时异常的父类是**Exception**，**CheckedException**不是类名，只是一个叫法。
 
