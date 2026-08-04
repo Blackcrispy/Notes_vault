@@ -116,24 +116,27 @@ class Person {
 #### 2. 异常处理的两种方式
 
 ##### (1) 使用`throws`继续抛出
+
 - 在方法的签名后面添加`"throws 异常类型名"`，异常继续上抛给调用者，让更上一层的调用者来处理。一直上抛到`main`方法时，如果继续上抛给`JVM`的话，若异常发生，则终止程序的运行。
-
-- 
-
 ```java
-class Demo {
-	/*
-	 * 因为NullPointerException是运行时异常，可以不用在方法上使用throws声明
-	 * 而FileNotFoundException是编译时异常，此处应该在方法上使用throws声明，
-	 * 否则编译不通过
-	 */
-	public void test(Object obj, String path) throws FileNotFoundException {
-		// 判断obj是否为null
-		if(null == obj)
-			throw new NullPointerException("obj不能为null");
-		// 创建文件字节读取流对象，如果文件地址不存在会抛出FileNotFoundException异常
-		FileInputStream is = new FileInputStream(path);
-	}
+public class ExceptionTest05 {
+    public static void main(String[] args) {
+        try {   //抛到main方法时，需要捕获，否则上抛给JVM
+	        m1();
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    }
+    }
+    public static void m1() throws FileNotFoundException {
+        m2();
+    }
+    public static void m2() throws FileNotFoundException {
+        m3();
+    }
+    public static void m3() throws FileNotFoundException {
+        // FileInputStream方法内部抛出了FileNotFoundException异常
+        FileInputStream in = new FileInputStream("d:/test.txt");
+    }
 }
 ```
 
