@@ -92,7 +92,8 @@ public class IllegalNameException extends Exception{
 }
 ```
 
-- 自定义异常时选择异常类型为编译时异常还是运行时异常？
+- 自定义异常的类型选择，继承`Exception`还是`RuntimeException`？
 	
 	- 类型为**编译时异常**：当这种异常是**外在因素导致的异常**，例如文件不存在，磁盘坏了，用户输入的信息不规范等异常情况。
+	
 	- 类型为运行时异常：当这种异常是**程序本身导致的异常**，一般
