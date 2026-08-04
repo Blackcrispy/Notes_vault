@@ -83,12 +83,13 @@ classDiagram
 	- **第二步**：编写两个构造方法，一个无参，一个带String类型参数的构造方法。
 
 ```java
-public class IllegalNameException extends Exception{  
-  //自定义的无效用户名异常    
-	public IllegalNameException(){}  
-    public IllegalNameException(String msg){  
-        super(msg);  
-    }  
+class AgeOutOfBoundsException extends Exception {  //自定义年龄超出范围异常
+	// 无参构造方法
+	public AgeOutOfBoundsException() {}
+	// 有参构造方法
+	public AgeOutOfBoundsException(String msg) {
+		super(msg);
+	}
 }
 ```
 
@@ -97,3 +98,18 @@ public class IllegalNameException extends Exception{
 	- **编译时异常**：当这种异常是**外在因素导致的异常**，例如文件不存在，磁盘坏了，用户输入格式错误等异常情况，需要调用者合理恢复并处理。
 	
 	- **运行时异常**：当这种异常是**程序本身导致的异常**，与外界因素不相关。不强制调用者处理。
+
+- 自定义异常的使用：
+```java
+class Person {
+	int age;
+	public Person(int age) throws AgeOutOfBoundsException {
+		// 判断年龄是否合法
+		if(age < 0 || age >= 130) {
+			throw new AgeOutOfBoundsException("年龄数值非法异常");
+		}
+		// 进行属性赋值
+		this.age = age;
+	}
+}
+```
