@@ -23,7 +23,7 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 	at hnu.xingjj.test.TestApplication.main(TestApplication.java:10)
 ```
 
-- 使用`throw`关键字可以手动模拟抛出异常的过程
+- 使用`throw`关键字可以手动模拟抛出异常的过程：**先创建异常对象，再将其抛出**。
 ```java
 public class TestApplication {  
     public static void main(String[] args) {  
@@ -68,5 +68,6 @@ classDiagram
         - ClassCastException：类型转换异常          
         - NullPointerException：空指针异常         
         - OtherException：等等其他运行时异常    
+        
     - **CheckedException**（**编译时异常**、受控异常、检查异常）：**除了运行时异常之外**的异常类，编写程序时必须预处理，否则编译器报错，==**无论运行时是否发生，编译器在编译时都会报错。**==
 
