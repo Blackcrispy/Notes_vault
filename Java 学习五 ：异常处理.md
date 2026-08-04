@@ -53,7 +53,7 @@ classDiagram
 
 - **Throwable**：异常堆栈结构的老祖宗，所有 **异常(Exception)** 和 **错误(Error)** 都是可抛出的。
 
-- **Error**：出现就立即退出JVM，程序员无权干涉也解决不了。
+- **Error**：==**出现就立即退出JVM，程序员无权干涉也解决不了。**==
 	
     - VirtualMachineError：虚拟机错误
         - OutOfMemoryError：OOM，堆内存溢出 / 方法区内存溢出
@@ -64,11 +64,15 @@ classDiagram
         
 - **Exception**：程序员可以处理，方式有两种—— `throws`推卸责任 或 `try-catch`自己解决
     
-    - **RuntimeException**（**运行时异常**、非受控异常、未检查异常）：编写程序时可选择处理或不处理，编译器不报错，==**只有当运行时真正发生时才会报错**==。  
+    - **RuntimeException**（**运行时异常**、非受控异常、未检查异常）：编写程序时可选择处理或不处理，编译器不报错。==**如果不处理，只有当运行时异常真正发生时才会报错**==。  
         - ClassCastException：类型转换异常          
         - NullPointerException：空指针异常         
         - OtherException：等等其他运行时异常    
         
-    - **CheckedException**（**编译时异常**、受控异常、检查异常）：**除了运行时异常之外**的异常类，编写程序时必须预处理，否则编译器报错，==**无论运行时是否发生，编译器在编译时都会报错**。
-	- 运行时异常的父类是**RuntimeException**，而编译时异常的父类是**Exception**，**CheckedException**不是类名，只是一个叫法。
+    - **CheckedException**（**编译时异常**、受控异常、检查异常）：**除了运行时异常之外**的异常类，编写程序时就必须预处理，否则编译器报错，==**如果不处理，编译器在编译时就会报错，无论异常是否会发生，程序都无法通过编译和运行**。
+	- 运行时异常的父类是**RuntimeException**，而编译时异常的父类是**Exception**，CheckedException不是类名，只是一个叫法。
+
+## 二、异常机制的操作
+
+#### 1、自定义异常
 
