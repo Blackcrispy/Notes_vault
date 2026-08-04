@@ -102,13 +102,12 @@ class AgeOutOfBoundsException extends Exception {  //自定义年龄超出范围
 - 自定义异常的使用：
 ```java
 class Person {
-	int age;
+	int age;                 // throws将异常信息传递出去，传递给调用者
 	public Person(int age) throws AgeOutOfBoundsException {
-		// 判断年龄是否合法
 		if(age < 0 || age >= 130) {
+			// 产生异常信息并抛出，终止当前方法的执行
 			throw new AgeOutOfBoundsException("年龄数值非法异常");
 		}
-		// 进行属性赋值
 		this.age = age;
 	}
 }
