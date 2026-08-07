@@ -158,10 +158,10 @@ try {
 - `catch`语句可以编写多个，但是必须遵循**从上到下的范围从小到大**。
 ```java
 try {
-	m1();
-} catch(IllegalNameException e) {
 
-} catch(Exception e) {
-	
+} catch(IllegalNameException e) { // catch中的异常类型，从上到下，从小到大
+
+} catch(Exception e) {  // Exception是IllegalNameException的父类
+
 }
 ```
