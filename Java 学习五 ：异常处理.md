@@ -155,13 +155,10 @@ try {
 ```
 - 当`try`语句块中的代码发生异常之后，拿着异常的类型，从上到下依次和`catch`中的异常类型进行比对，如果类型一致或属于该类的子类，则进入该`catch`分支，然后处理异常。
 
-- `catch`语句可以编写多个，但是必须遵循**从上到下的范围从小到大**。
+- `catch`语句可以编写多个，但是必须遵循**从上到下的异常类型范围从小到大**。
 ```java
 try {
-
 } catch(IllegalNameException e) { // catch中的异常类型，从上到下，从小到大
-
 } catch(Exception e) {  // Exception是IllegalNameException的父类
-
 }
 ```
