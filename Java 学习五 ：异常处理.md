@@ -99,7 +99,7 @@ class AgeOutOfBoundsException extends Exception {  //自定义年龄超出范围
 	
 	- **运行时异常**：当这种异常是**程序本身导致的异常**，与外界因素不相关。不强制调用者处理。
 
-- `throw`抛出自定义异常，后面的代码不再执行，终止当前方法的执行，类似`return`
+- `throw`抛出自定义异常，**后面的代码不再执行，终止当前方法的执行**，类似`return`
 ```java
 class Person {
 	int age;                 // throws将异常信息传递出去，传递给调用者
@@ -150,13 +150,28 @@ try {
 }
 ```
 
-- `catch`语句可以编写多个，但是必须遵循**从上到下的异常类型范围从小到大**。
+- 多个`catch`块必须遵循**从上到下由小到大（子类在前，父类在后）** 的原则。因为一旦匹配成功，后续`catch`不再执行，如果父类在前，子类将永远无法被匹配。
 ```java
 try {
-
-} catch(IllegalNameException e) { // catch中的异常类型，从上到下，从小到大
-} catch(Exception e) {  // Exception是IllegalNameException的父类
+    // 可能抛出多种异常的代码
+} catch (FileNotFoundException e) {     // 子类在前
+    System.out.println("文件不存在");
+} catch (IOException e) {              // 父类在后
+    System.out.println("IO异常");
+} catch (Exception e) {                // 更父类在后
+    System.out.println("其他异常");
 }
 ```
 
-- 
+- **Java 7** 之后的版本中，如果多个异常的处理逻辑相同，可以用 `|` 合并，但是这些异常之间不能有父子关系。
+```java
+try {
+    // 业务代码
+} catch (IOException | SQLException e) {
+    // 多个异常类型使用相同的处理逻辑
+    e.printStackTrace();
+} catch (Exception e) {
+    // 兜底：处理其他未被捕获的异常
+    e.printStackTrace();
+}
+```
