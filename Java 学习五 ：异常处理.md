@@ -226,3 +226,46 @@ try {
 
 ##### (3) finally 语句要点
 
+- `finally`通常用于释放资源，比如关闭文件流、数据库连接等。例如：
+```java
+FileInputStream in = null;
+try {
+    in = new FileInputStream("d:/test.txt");
+    // 读取文件...
+} catch (FileNotFoundException e) {
+    e.printStackTrace();
+} finally {
+    if (in != null) {
+        try {
+            in.close();  // close() 本身也可能抛异常
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+这种方式比较繁琐，需要手动判空，而且 `close()` 本身还得再包一层 `try-catch`。我们可以使用 **try-with-resources（Java 7+）** 写法，可以实现自动关闭资源，是对上面传统写法的优化：
+```java
+try (FileInputStream in = new FileInputStream("d:/test.txt")) {
+    // try 结束后会自动调用 in.close()
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+**注意：**`try` 后面的小括号里声明的资源，必须实现 `AutoCloseable` 接口。`try` 块执行完毕后，无论是否发生异常，系统会自动调用资源的 `close()` 方法，不需要手动写 `finally` 去关。
+
+- **try-finally** 也是合法的组合，这个语句**不关心异常如何处理，只管释放资源**，异常需要上抛给调用者。
+```java
+public static void m1() throws FileNotFoundException {
+    FileInputStream in = null;
+    try {
+        in = new FileInputStream("d:/test.txt");
+    } finally {
+        if (in != null) {
+            in.close();
+        }
+    }
+}
+```
+
+- 
