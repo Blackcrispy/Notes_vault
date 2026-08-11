@@ -268,4 +268,15 @@ public static void m1() throws FileNotFoundException {
 }
 ```
 
-- 
+- 当`try`块中含有`return`语句时，`finally`块中的代码执行细节，先如下例子所示：
+```java
+public static int m2() {
+    int i = 10;
+    try {
+        return i;  // 返回 10
+    } finally {
+        i++;       // i 变成 11
+        System.out.println("hello ....");
+    }
+}
+```
