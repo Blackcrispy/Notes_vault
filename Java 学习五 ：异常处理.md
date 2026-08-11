@@ -254,6 +254,7 @@ try (FileInputStream in = new FileInputStream("d:/test.txt")) {
 ```
 **注意：**`try` 后面的小括号里声明的资源，必须实现 `AutoCloseable` 接口。`try` 块执行完毕后，无论是否发生异常，系统会自动调用资源的 `close()` 方法，不需要手动写 `finally` 去关。
 
+
 - **try-finally** 也是合法的组合，这个语句**不关心异常如何处理，只管释放资源**，异常需要上抛给调用者。
 ```java
 public static void m1() throws FileNotFoundException {
@@ -275,8 +276,8 @@ public static int m2() {
     try {
         return i;  // 返回 10
     } finally {
-        i++;       // i 变成 11
-        System.out.println("hello ....");
+        i++;       // i 变成 11 ?
     }
 }
 ```
+先执行try块，但是
