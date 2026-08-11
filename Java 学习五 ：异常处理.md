@@ -194,3 +194,33 @@ try {
 }
 ```
 
+- 异常被捕获进入`catch`分支后，**不能空着不处理**，否则异常发生后就石沉大海，完全没人知道。常见的处理方式有两种：
+	
+    - **第一种：打印异常堆栈追踪信息。** `e.printStackTrace()` 是开发阶段最常用的方式，能清晰看到异常在哪一行发生、调用路径是什么。
+	    
+    - **第二种：二次包装后继续上抛。** 把原始异常包装成一个新的异常再抛出，适合在某一层对异常补充业务上下文信息后，交给上层调用者去处理。
+```java
+catch (FileNotFoundException e) {
+    e.printStackTrace();  // 方式一：打印完整堆栈
+    
+    throw new RuntimeException("读取文件失败，请检查文件路径", e);  
+    // 方式二：二次包装后上抛
+}
+```
+
+- 异常对象的常用方法：
+	
+    - `e.printStackTrace()`：打印完整的异常堆栈追踪信息，包含异常类型、错误信息、发生位置（类名、方法名、行号）。该方法输出的堆栈信息帮助程序员定位问题在哪一行。
+	    
+    - `e.getMessage()`：获取异常的错误描述信息，返回一个字符串，不包含堆栈。该方法拿到的错误描述用于直接记录日志或展示给用户。
+```java
+try {
+    FileInputStream in = new FileInputStream("d:/test.txt");
+} catch (FileNotFoundException e) {
+    e.printStackTrace();  // 打印完整堆栈、
+    
+    String msg = e.getMessage();  // 获取错误描述
+    System.out.println("错误信息：" + msg);
+}
+```
+
