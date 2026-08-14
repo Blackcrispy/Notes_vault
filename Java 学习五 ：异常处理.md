@@ -134,6 +134,23 @@ public class ExceptionTest05 {
 }
 ```
 
+- 子类重写父类方法时，抛出的异常**不能**比父类**更宽泛**。
+```java
+class Parent {
+    public void method() throws IOException {
+        System.out.println("Parent.method");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    public void method() throws FileNotFoundException { 
+	    // FileNotFoundException 是 IOException 的子类（更具体而非更宽泛）
+        System.out.println("Child.method");
+    }
+}
+```
+
 ##### 2. 使用`try-catch-finally`进行捕捉
 
 - 当`try`语句块中的代码发生异常之后，程序会拿着异常的类型，**从上到下**依次和`catch`中的异常类型进行比对。一旦匹配成功（异常类型一致或者是该类型的子类），就进入该`catch`分支执行对应的处理逻辑，匹配成功后，后续的`catch`分支将不再执行，也就是说整个`try-catch`结构中最多**只有一个**`catch`分支会被执行。
