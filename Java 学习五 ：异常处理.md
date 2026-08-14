@@ -269,7 +269,7 @@ public static void m1() throws FileNotFoundException {
 }
 ```
 
-- 当`try`块中含有`return`语句时，`finally`块中的代码执行细节，先如下例子所示：
+- 当`try`块中含有`return`语句时，`finally`块在`return`之前执行，但不影响`return`语句：
 ```java
 public static int m2() {
     int i = 10;
@@ -277,7 +277,8 @@ public static int m2() {
         return i;  // 返回 10
     } finally {
         i++;       // i 变成 11 ?
+        System.out.println("hello");
     }
 }
 ```
-先执行try块，但是
+先执行`try`块，遇到`return`时并不会立即返回，而是先将要返回的值暂存起来，然后去执行`finally`块，`finally`执行完毕后才真正返回。`finally`中对变量的修改不会影响已经暂存的返回值，所以上面的代码最终先打印"hello"，再返回10，而不是11。
