@@ -244,7 +244,7 @@ try {
     }
 }
 ```
-这种方式比较繁琐，需要手动判空，而且 `close()` 本身还得再包一层 `try-catch`。我们可以使用 **try-with-resources（Java 7+）** 写法，可以实现自动关闭资源，是对上面传统写法的优化：
+- 这种方式比较繁琐，需要手动判空，而且 `close()` 本身还得再包一层 `try-catch`。我们可以使用 **try-with-resources（Java 7+）** 写法，可以自动关闭资源，是对上面传统写法的优化：
 ```java
 try (FileInputStream in = new FileInputStream("d:/test.txt")) {
     // try 结束后会自动调用 in.close()
@@ -281,4 +281,4 @@ public static int m2() {
     }
 }
 ```
-先执行`try`块，遇到`return`时并不会立即返回，而是先将要返回的值暂存起来，然后去执行`finally`块，`finally`执行完毕后才真正返回。`finally`中对变量的修改不会影响已经暂存的返回值，所以上面的代码最终先打印"hello"，再返回10，而不是11。
+**代码解释**：先执行`try`块，遇到`return`时并不会立即返回，而是先将要返回的值暂存起来，然后去执行`finally`块，`finally`执行完毕后才真正返回。`finally`中对变量的修改不会影响已经暂存的返回值，所以上面的代码最终先打印"hello"，再返回10，而不是11。
